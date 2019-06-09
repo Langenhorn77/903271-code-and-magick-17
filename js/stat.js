@@ -42,7 +42,6 @@ var getMaxElement = function (arr) {
 
 var xGap = Cloud.x + GAP;
 var yGap = Cloud.y + GAP;
-var xGapTwice = Cloud.x + GAP * 2;
 
 var barProps = Bar.gap + Bar.width;
 
@@ -58,10 +57,11 @@ window.renderStatistics = function (ctx, NAMES, TIMES) {
   var maxTime = getMaxElement(TIMES);
 
   for (var i = 0; i < NAMES.length; i++) {
-    renderText(ctx, xGapTwice + barProps * i, cloudBottom, ' PT Mono', 16, NAMES[i], 'hanging', '#000');
-    renderText(ctx, xGapTwice + barProps * i, cloudBottom - GAP * 2 - ((Bar.height * TIMES[i]) / maxTime), ' PT Mono', 16, Math.round(TIMES[i]), 'hanging', '#000');
+    var calcX = Cloud.x + GAP * 2 + barProps * i;
+    renderText(ctx, calcX, cloudBottom, ' PT Mono', 16, NAMES[i], 'hanging', '#000');
+    renderText(ctx, calcX, cloudBottom - GAP * 2 - ((Bar.height * TIMES[i]) / maxTime), ' PT Mono', 16, Math.round(TIMES[i]), 'hanging', '#000');
 
-    renderRect(ctx, xGapTwice + barProps * i, cloudBottom - GAP, Bar.width, -((Bar.height * TIMES[i]) / maxTime), (NAMES[i] === 'Вы') ?
+    renderRect(ctx, calcX, cloudBottom - GAP, Bar.width, -((Bar.height * TIMES[i]) / maxTime), (NAMES[i] === 'Вы') ?
       'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + Math.random().toFixed(2) + ')');
   }
 };
