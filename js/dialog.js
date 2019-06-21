@@ -130,6 +130,7 @@ artifactsElement.addEventListener('dragover', function (evt) {
 });
 
 artifactsElement.addEventListener('drop', function (evt) {
+  evt.preventDefault();
   evt.target.style.backgroundColor = '';
   evt.target.appendChild(draggedItem);
 });
