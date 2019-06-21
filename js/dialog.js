@@ -1,4 +1,26 @@
+'use strict';
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var DIALOG_DEFAULT_POSITION = {
+  top: '80px',
+  left: '50%'
+};
+
+var setup = document.querySelector('.setup');
+
+// Сброс стилей дилогового окна
+
+var defaultStyle = function () {
+  setup.style.top = DIALOG_DEFAULT_POSITION.top;
+  setup.style.left = DIALOG_DEFAULT_POSITION.left;
+};
+
+
 // Открытие и закрытие окна setup
+
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
 
 var onPopupEscPress = function () {
   document.addEventListener('keydown', function (evt) {

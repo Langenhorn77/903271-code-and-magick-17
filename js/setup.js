@@ -1,6 +1,4 @@
 'use strict';
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
 
 var WIZARD_NUMBER = 4;
 var NAMES = [
@@ -50,19 +48,6 @@ var FIREBALLS = [
   '#e6e848',
 ];
 
-
-var DIALOG_DEFAULT_POSITION = {
-  top: '80px',
-  left: '50%'
-};
-
-// Сброс стилей дилогового окна
-
-var defaultStyle = function () {
-  setup.style.top = DIALOG_DEFAULT_POSITION.top;
-  setup.style.left = DIALOG_DEFAULT_POSITION.left;
-};
-
 // Функия случайного значения
 
 var getRandomIndex = function (max) {
@@ -72,8 +57,6 @@ var getRandomIndex = function (max) {
 
 // Изменения цветов по клику
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
 
 var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
 var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
