@@ -1,6 +1,4 @@
 'use strict';
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
 
 var WIZARD_NUMBER = 4;
 var NAMES = [
@@ -47,16 +45,18 @@ var FIREBALLS = [
   '#30a8ee',
   '#5ce6c0',
   '#e848d5',
-  '#e6e848'
+  '#e6e848',
 ];
+
+// Функия случайного значения
 
 var getRandomIndex = function (max) {
   return Math.floor(Math.random() * max);
 };
 
+
+// Изменения цветов по клику
 var setup = document.querySelector('.setup');
-var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
 
 var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
 var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
@@ -78,59 +78,7 @@ wizardCoat.addEventListener('click', changeCoatColor);
 wizardEyes.addEventListener('click', changeEyesColor);
 wizardFireball.addEventListener('click', changeFireballColor);
 
-var onPopupEscPress = function () {
-  document.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
-    }
-  });
-};
-
-var openPopup = function () {
-  setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
-};
-
-var closePopup = function () {
-  setup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
-};
-
-
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
-
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
-});
-
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
-
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
-});
-
-var userNameInput = setup.querySelector('.setup-user-name');
-
-userNameInput.addEventListener('invalid', function () {
-  if (userNameInput.validity.tooShort) {
-    userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
-  } else if (userNameInput.validity.tooLong) {
-    userNameInput.setCustomValidity('Имя не должно превышать 25-ти символов');
-  } else if (userNameInput.validity.valueMissing) {
-    userNameInput.setCustomValidity('Обязательное поле');
-  } else {
-    userNameInput.setCustomValidity('');
-  }
-});
-
+// Рендер волшебников
 
 var similarListElement = document.querySelector('.setup-similar-list');
 document.querySelector('.setup-similar').classList.remove('hidden');
