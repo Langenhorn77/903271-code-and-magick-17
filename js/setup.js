@@ -6,7 +6,7 @@
 
   var DIALOG_DEFAULT_POSITION = {
     top: '80px',
-    left: '50%',
+    left: '50%'
   };
 
   window.setupDialog = document.querySelector('.setup');
