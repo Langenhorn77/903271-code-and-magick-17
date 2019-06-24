@@ -18,18 +18,16 @@
     window.setupDialog.style.left = DIALOG_DEFAULT_POSITION.left;
   };
 
-
   // Открытие и закрытие окна setup
 
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = window.setupDialog.querySelector('.setup-close');
+  var nameInput = document.querySelector('.setup-user-name');
 
-  var onPopupEscPress = function () {
-    document.addEventListener('keydown', function (evt) {
-      if (evt.keyCode === ESC_KEYCODE) {
-        closePopup();
-      }
-    });
+  var onPopupEscPress = function (evt) {
+    if ((evt.keyCode === ESC_KEYCODE) && (!(nameInput === document.activeElement))) {
+      closePopup();
+    }
   };
 
   var openPopup = function () {

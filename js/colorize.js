@@ -1,13 +1,6 @@
 'use strict';
 
 (function () {
-  var FIREBALLS = [
-    '#ee4830',
-    '#30a8ee',
-    '#5ce6c0',
-    '#e848d5',
-    '#e6e848',
-  ];
 
   // Изменения цветов по клику
 
@@ -16,15 +9,15 @@
   var wizardFireball = window.setupDialog.querySelector(' .setup-fireball-wrap');
 
   var changeCoatColor = function () {
-    wizardCoat.style.fill = window.render.COATS[window.utils.getRandomIndex(window.render.COATS.length)];
+    wizardCoat.style.fill = window.dataArray.COATS[window.utils.getRandomIndex(window.dataArray.COATS.length)];
   };
 
   var changeEyesColor = function () {
-    wizardEyes.style.fill = window.render.EYES[window.utils.getRandomIndex(window.render.EYES.length)];
+    wizardEyes.style.fill = window.dataArray.EYES[window.utils.getRandomIndex(window.dataArray.EYES.length)];
   };
 
   var changeFireballColor = function () {
-    wizardFireball.style.background = FIREBALLS[window.utils.getRandomIndex(FIREBALLS.length)];
+    wizardFireball.style.background = window.dataArray.FIREBALLS[window.utils.getRandomIndex(window.dataArray.FIREBALLS.length)];
   };
 
   wizardCoat.addEventListener('click', changeCoatColor);
