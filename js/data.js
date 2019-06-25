@@ -3,8 +3,31 @@
 // Генерация массива изображений
 
 (function () {
+  var WIZARD_NUMBER = 4;
 
-  window.dataArray = {
+  var NAMES = [
+    'Иван',
+    'Хуан Себастьян',
+    'Мария',
+    'Кристоф',
+    'Виктор',
+    'Юлия',
+    'Люпита',
+    'Вашингтон',
+  ];
+
+  var SURNAMES = [
+    'да Марья',
+    'Верон',
+    'Мирабелла',
+    'Вальц',
+    'Онопко',
+    'Топольницкая',
+    'Нионго',
+    'Ирвинг',
+  ];
+
+  window.data = {
     COATS: [
       'rgb(101, 137, 164)',
       'rgb(241, 43, 107)',
@@ -29,47 +52,22 @@
       '#e848d5',
       '#e6e848',
     ],
-
+    CHARS: [],
     similarListElement: document.querySelector('.setup-similar-list'),
-
     similarWizardTemplate: document.getElementById('similar-wizard-template')
       .content
       .querySelector('.setup-similar-item'),
 
-    CHARS: [],
     fillArray: function () {
       for (var j = 0; j < WIZARD_NUMBER; j++) {
         var person = {
           name: NAMES[window.utils.getRandomIndex(NAMES.length)] + ' ' + SURNAMES[window.utils.getRandomIndex(SURNAMES.length)],
-          coatColor: window.dataArray.COATS[window.utils.getRandomIndex(window.dataArray.COATS.length)],
-          eyesColor: window.dataArray.EYES[window.utils.getRandomIndex(window.dataArray.EYES.length)],
+          coatColor: window.data.COATS[window.utils.getRandomIndex(window.data.COATS.length)],
+          eyesColor: window.data.EYES[window.utils.getRandomIndex(window.data.EYES.length)],
         };
-        window.dataArray.CHARS.push(person);
+        window.data.CHARS.push(person);
       }
     }
   };
-
-  var WIZARD_NUMBER = 4;
-
-  var NAMES = [
-    'Иван',
-    'Хуан Себастьян',
-    'Мария',
-    'Кристоф',
-    'Виктор',
-    'Юлия',
-    'Люпита',
-    'Вашингтон',
-  ];
-
-  var SURNAMES = [
-    'да Марья',
-    'Верон',
-    'Мирабелла',
-    'Вальц',
-    'Онопко',
-    'Топольницкая',
-    'Нионго',
-    'Ирвинг',
-  ];
+  window.data.fillArray();
 })();

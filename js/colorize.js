@@ -9,15 +9,15 @@
   var wizardFireball = window.setupDialog.querySelector(' .setup-fireball-wrap');
 
   var changeCoatColor = function () {
-    wizardCoat.style.fill = window.dataArray.COATS[window.utils.getRandomIndex(window.dataArray.COATS.length)];
+    wizardCoat.style.fill = window.data.COATS[window.utils.getRandomIndex(window.data.COATS.length)];
   };
 
   var changeEyesColor = function () {
-    wizardEyes.style.fill = window.dataArray.EYES[window.utils.getRandomIndex(window.dataArray.EYES.length)];
+    wizardEyes.style.fill = window.data.EYES[window.utils.getRandomIndex(window.data.EYES.length)];
   };
 
   var changeFireballColor = function () {
-    wizardFireball.style.background = window.dataArray.FIREBALLS[window.utils.getRandomIndex(window.dataArray.FIREBALLS.length)];
+    wizardFireball.style.background = window.data.FIREBALLS[window.utils.getRandomIndex(window.data.FIREBALLS.length)];
   };
 
   wizardCoat.addEventListener('click', changeCoatColor);

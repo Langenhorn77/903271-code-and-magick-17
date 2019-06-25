@@ -22,10 +22,9 @@
 
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = window.setupDialog.querySelector('.setup-close');
-  var nameInput = document.querySelector('.setup-user-name');
 
   var onPopupEscPress = function (evt) {
-    if ((evt.keyCode === ESC_KEYCODE) && (!(nameInput === document.activeElement))) {
+    if ((evt.keyCode === ESC_KEYCODE) && !evt.target.classList.contains('setup-user-name')) {
       closePopup();
     }
   };

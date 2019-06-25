@@ -4,7 +4,7 @@
 
 (function () {
   var renderWizard = function (wizard) {
-    var wizardElement = window.dataArray.similarWizardTemplate.cloneNode(true);
+    var wizardElement = window.data.similarWizardTemplate.cloneNode(true);
     wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
@@ -15,16 +15,14 @@
   var fragment = document.createDocumentFragment();
 
   var addWizard = function () {
-    for (var i = 0; i < window.dataArray.CHARS.length; i++) {
-      fragment.appendChild(renderWizard(window.dataArray.CHARS[i]));
+    for (var i = 0; i < window.data.CHARS.length; i++) {
+      fragment.appendChild(renderWizard(window.data.CHARS[i]));
     }
   };
 
   var newElement = function () {
-    window.dataArray.similarListElement.appendChild(fragment);
+    window.data.similarListElement.appendChild(fragment);
   };
-
-  window.dataArray.fillArray();
   addWizard();
   newElement();
 
