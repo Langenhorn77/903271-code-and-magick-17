@@ -28,6 +28,7 @@
   ];
 
   window.data = {
+    WIZARD_NUMBER: 4,
     COATS: [
       'rgb(101, 137, 164)',
       'rgb(241, 43, 107)',

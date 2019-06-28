@@ -10,6 +10,10 @@
   };
 
   window.setupDialog = document.querySelector('.setup');
+  var userForm = window.setupDialog.querySelector('.setup-wizard-form');
+  var buttonForm = window.setupDialog.querySelector('.setup-submit');
+  var setupOpen = document.querySelector('.setup-open');
+  var setupClose = window.setupDialog.querySelector('.setup-close');
 
   // Сброс стилей дилогового окна
 
@@ -19,10 +23,6 @@
   };
 
   // Открытие и закрытие окна setup
-
-  var setupOpen = document.querySelector('.setup-open');
-  var setupClose = window.setupDialog.querySelector('.setup-close');
-
   var onPopupEscPress = function (evt) {
     if ((evt.keyCode === ESC_KEYCODE) && !evt.target.classList.contains('setup-user-name')) {
       closePopup();
@@ -31,6 +31,7 @@
 
   var openPopup = function () {
     window.setupDialog.classList.remove('hidden');
+    buttonForm.disabled = false;
     document.addEventListener('keydown', onPopupEscPress);
   };
 
@@ -59,5 +60,14 @@
     if (evt.keyCode === ENTER_KEYCODE) {
       closePopup();
     }
+  });
+
+  // Отправка формы на сервер
+  userForm.addEventListener('submit', function (evt) {
+    buttonForm.disabled = true;
+    window.backend.save(new FormData(userForm), function () {
+      window.setupDialog.classList.add('hidden');
+    }, window.backend.errorHandler);
+    evt.preventDefault();
   });
 })();
