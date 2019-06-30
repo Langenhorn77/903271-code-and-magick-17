@@ -6,7 +6,7 @@
 
   var DIALOG_DEFAULT_POSITION = {
     top: '80px',
-    left: '50%'
+    left: '50%',
   };
 
   window.setupDialog = document.querySelector('.setup');
@@ -62,12 +62,11 @@
     }
   });
 
-  // Отправка формы на сервер
   userForm.addEventListener('submit', function (evt) {
     buttonForm.disabled = true;
-    window.backend.save(new FormData(userForm), function () {
+    window.backend.useServer(function () {
       window.setupDialog.classList.add('hidden');
-    }, window.backend.errorHandler);
+    }, window.backend.errorHandler, 'save', new FormData(userForm));
     evt.preventDefault();
   });
 })();

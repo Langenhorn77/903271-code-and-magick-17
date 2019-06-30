@@ -25,6 +25,6 @@
     window.utils.newElement(window.data.similarListElement, fragment);
     window.setupDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
-  window.backend.load(successHandler, window.backend.errorHandler);
+  window.backend.useServer(successHandler, window.backend.errorHandler, 'load');
 })();
 
