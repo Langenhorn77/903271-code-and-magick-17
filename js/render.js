@@ -19,12 +19,11 @@
       fragment.appendChild(renderWizard(array[window.utils.getRandomIndex(length - 1)]));
     }
   };
-
   var successHandler = function (wizards) {
     addWizard(wizards, wizards.length);
     window.utils.newElement(window.data.similarListElement, fragment);
     window.setupDialog.querySelector('.setup-similar').classList.remove('hidden');
   };
-  window.backend.useServer(successHandler, window.backend.errorHandler, 'load');
+  window.backend.load(successHandler, window.backend.errorHandler);
 })();
 

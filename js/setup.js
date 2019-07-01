@@ -64,9 +64,9 @@
 
   userForm.addEventListener('submit', function (evt) {
     buttonForm.disabled = true;
-    window.backend.useServer(function () {
-      window.setupDialog.classList.add('hidden');
-    }, window.backend.errorHandler, 'save', new FormData(userForm));
     evt.preventDefault();
+    window.backend.save(function () {
+      window.setupDialog.classList.add('hidden');
+    }, window.backend.errorHandler, new FormData(userForm));
   });
 })();

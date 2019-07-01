@@ -5,41 +5,40 @@
   var STATUS_CODE = 200;
   var URL_SAVE = 'https://js.dump.academy/code-and-magick';
   var URL_LOAD = 'https://js.dump.academy/code-and-magick/data';
+  var xhr;
+  var useServer = function (onLoad, onError) {
+    xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.addEventListener('load', function () {
+      if (xhr.status === STATUS_CODE) {
+        onLoad(xhr.response);
+      } else {
+        onError('Произошла ошибка. Код: ' + xhr.status);
+      }
+    });
+
+    xhr.addEventListener('error', function () {
+      onError('Произошла ошибка соединения');
+    });
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + ' мс');
+    });
+
+    xhr.timeout = TIMEOUT;
+  };
 
   window.backend = {
-    useServer: function (onLoad, onError, use, data) {
-      var xhr = new XMLHttpRequest();
-      xhr.responseType = 'json';
+    save: function (success, fail, formData) {
+      useServer(success, fail);
+      xhr.open('POST', URL_SAVE);
+      xhr.send(formData);
+    },
 
-      xhr.addEventListener('load', function () {
-        if (xhr.status === STATUS_CODE) {
-          onLoad(xhr.response);
-        } else {
-          onError('Произошла ошибка. Код: ' + xhr.status);
-        }
-      });
-
-      xhr.addEventListener('error', function () {
-        onError('Произошла ошибка соединения');
-      });
-      xhr.addEventListener('timeout', function () {
-        onError('Запрос не успел выполниться за ' + xhr.timeout + ' мс');
-      });
-
-      xhr.timeout = TIMEOUT;
-
-      switch (use) {
-        case 'save':
-          xhr.open('POST', URL_SAVE);
-          xhr.send(data);
-          break;
-        case 'load':
-          xhr.open('GET', URL_LOAD);
-          xhr.send();
-          break;
-        default:
-          onError('Ошибка обращения к серверу.');
-      }
+    load: function (success, fail) {
+      useServer(success, fail);
+      xhr.open('GET', URL_LOAD);
+      xhr.send();
     },
 
     errorHandler: function (errorMessage) {
