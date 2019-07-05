@@ -14,16 +14,20 @@
 
   var fragment = document.createDocumentFragment();
 
-  var addWizard = function (array, length) {
-    for (var i = 0; i < window.data.WIZARD_NUMBER; i++) {
-      fragment.appendChild(renderWizard(array[window.utils.getRandomIndex(length - 1)]));
+  var addWizard = function (array) {
+    var limitWizards = array.length > 4 ? 4 : array.length;
+    window.data.similarListElement.innerHTML = '';
+    for (var i = 0; i < limitWizards; i++) {
+      fragment.appendChild(renderWizard(array[i]));
     }
   };
-  var successHandler = function (wizards) {
-    addWizard(wizards, wizards.length);
-    window.utils.newElement(window.data.similarListElement, fragment);
-    window.setupDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+  window.render = {
+    renderSimilarWizards: function (wizards) {
+      addWizard(wizards);
+      window.utils.newElement(window.data.similarListElement, fragment);
+      window.setupDialog.querySelector('.setup-similar').classList.remove('hidden');
+    },
   };
-  window.backend.load(successHandler, window.backend.errorHandler);
 })();
 
